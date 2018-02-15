@@ -1,0 +1,23 @@
+- name: "Installing other packages"
+  yum: pkg={{item}} state=installed
+  with_items:
+   - vim
+   - git
+   - telnet
+   - net-tools
+
+- name: "Installing wget"
+  yum:
+   name: wget
+   state: present
+
+- name: "Adding file"
+  copy: src=../files/testfile dest=/home/ansible/testfile owner=root group=root mode=0644
+
+- name: "Moving file"
+  shell: creates=/home/ansible/testfile2_old mv /home/ansible/testfile2 /home/ansible/testfile2_old
+
+- name: "Disabling firewalld"
+  service: 
+   name: firewalld
+   state: stopped
