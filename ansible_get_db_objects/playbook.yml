@@ -2,7 +2,7 @@
 - hosts: dbtest
   user: admin
   sudo: yes
-  sudo_user: oracle
+  sudo_user: grid
   roles:
   - dbtest
 
