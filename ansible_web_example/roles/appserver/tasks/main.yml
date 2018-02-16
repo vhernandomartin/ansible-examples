@@ -1,3 +1,16 @@
+- name: "Creating tomcat group"
+  group:
+    name: tomcat
+    state: present
+
+- name: "Creating tomcat user"
+  user:
+    name: tomcat
+    comment: "Tomcat User"
+    shell: /bin/bash
+    uid: 1040
+    group: tomcat
+
 - name: "Installing App server packages"
   yum: pkg={{item}} state=installed
   with_items:
@@ -8,3 +21,12 @@
 
 - name: "Deploying Tomcat"
   shell: wget -qO- http://apache.uvigo.es/tomcat/tomcat-9/v9.0.4/bin/apache-tomcat-9.0.4.tar.gz | tar zxvp -C /var/apache-tomcat
+
+- name: "Changing owner to Tomcat Dir"
+  file:
+    path: /var/apache-tomcat
+    owner: tomcat
+    group: tomcat
+    mode: 755
+    state: directory
+    recurse: yes
