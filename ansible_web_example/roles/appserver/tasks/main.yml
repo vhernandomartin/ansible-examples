@@ -21,7 +21,9 @@
 
 - name: "Deploying Tomcat"
   shell: wget -qO- http://apache.uvigo.es/tomcat/tomcat-9/v9.0.4/bin/apache-tomcat-9.0.4.tar.gz | tar zxvp -C /var/apache-tomcat
-  changed_when: true
+
+- name: "Creating Tomcat Service"
+  copy: src=../files/tomcat.service dest=/etc/systemd/system/tomcat.service owner=root group=root mode=0644
   notify:
     - start-tomcat
 

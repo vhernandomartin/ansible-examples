@@ -1,4 +1,6 @@
 - name: start-tomcat
-  command: /var/apache-tomcat/apache-tomcat-9.0.4/bin/startup.sh
-  become: yes
-  become_user: tomcat
+    systemd:
+    name: tomcat
+    enabled: yes
+    state: restarted
+    become: true
