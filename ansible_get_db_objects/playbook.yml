@@ -1,0 +1,19 @@
+---
+- hosts: dbtest
+  user: admin
+  sudo: yes
+  sudo_user: oracle
+  roles:
+  - dbtest
+
+  vars:
+        oracle_home: /u01/app/12.2.0/grid
+        hostname: ctsusaoradb01
+        service_name: +ASM
+        set_init_mode: sysdba
+        set_init_user: sys
+        user: sys
+        password: ctsusa
+        oracle_env:
+               ORACLE_HOME: "{{ oracle_home }}"
+               LD_LIBRARY_PATH: "{{ oracle_home }}/lib"
