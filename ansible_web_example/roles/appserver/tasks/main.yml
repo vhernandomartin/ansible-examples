@@ -21,6 +21,8 @@
 
 - name: "Deploying Tomcat"
   shell: wget -qO- http://apache.uvigo.es/tomcat/tomcat-9/v9.0.4/bin/apache-tomcat-9.0.4.tar.gz | tar zxvp -C /var/apache-tomcat
+  notify:
+    - start-tomcat
 
 - name: "Changing owner to Tomcat Dir"
   file:
