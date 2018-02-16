@@ -3,9 +3,6 @@
   with_items:
    - httpd
 
-- name: "Changing SELinux Policy"
-  shell: /usr/sbin/setsebool httpd_can_network_connect 1
-
 - name: "Adding proxy pass file"
   template: src=../files/proxy.conf dest=/etc/httpd/conf.d owner=root group=root mode=0644
   notify:

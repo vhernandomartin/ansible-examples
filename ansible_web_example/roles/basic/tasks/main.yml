@@ -15,6 +15,9 @@
    name: firewalld
    state: stopped
 
+- name: "Changing SELinux Policy"
+  shell: /usr/sbin/setsebool httpd_can_network_connect 1
+
 - name: "Disabling SELinux"
   selinux:
     state: disabled
