@@ -4,6 +4,6 @@
    - httpd
 
 - name: "Adding proxy pass file"
-  template: src=../files/index.html dest=/var/www/html owner=root group=root mode=0644
-  notify: 
+  template: src=../files/proxy.conf dest=/etc/httpd/conf.d owner=root group=root mode=0644
+  notify:
   - restart-httpd
