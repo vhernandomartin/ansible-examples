@@ -1,4 +1,4 @@
 - name: start-tomcat
-  script: /var/apache-tomcat/apache-tomcat-9.0.4/bin/startup.sh
+  shell: bash /var/apache-tomcat/apache-tomcat-9.0.4/bin/startup.sh
   become: yes
   become_user: tomcat
