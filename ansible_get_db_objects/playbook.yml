@@ -1,8 +1,8 @@
 ---
 - hosts: dbtest
-  user: admin
-  sudo: yes
-  sudo_user: grid
+  user: victor
+  become: yes
+  become_user: grid
   roles:
   - dbtest
 
