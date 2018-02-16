@@ -1,6 +1,4 @@
 - name: start-tomcat
-    systemd:
-    name: tomcat
-    enabled: yes
-    state: restarted
-    become: true
+    service:
+      name: tomcat
+      state: started
