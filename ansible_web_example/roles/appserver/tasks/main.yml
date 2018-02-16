@@ -1,0 +1,4 @@
+- name: "Installing App server packages"
+  yum: pkg={{item}} state=installed
+  with_items:
+   - java-1.8.0-openjdk
