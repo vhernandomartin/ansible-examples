@@ -3,4 +3,5 @@
     username: "{{ user }}"
     password: "{{ password }}"
     service_name: "{{ service_name }}"
+    hostname: "{{ hostname }}"
     sql: 'select username from dba_users'
