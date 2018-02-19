@@ -1,5 +1,6 @@
 - name: "Execute test sql"
   oracle_sql:
+    environment: oracle_env
     username: "{{ user }}"
     password: "{{ password }}"
     service_name: "{{ service_name }}"
