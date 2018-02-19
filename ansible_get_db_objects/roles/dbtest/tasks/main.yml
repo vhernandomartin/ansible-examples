@@ -5,6 +5,4 @@
     service_name: "{{ service_name }}"
     hostname: "{{ hostname }}"
     sql: 'select username from dba_users'
-  environment:
-    ORACLE_HOME: /u01/app/oracle/product/12.2.0/dbhome_1
-    LD_LIBRARY_PATH: /u01/app/oracle/product/12.2.0/dbhome_1/lib
+  environment: "{{ oracle_env }}"
