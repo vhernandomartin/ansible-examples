@@ -8,13 +8,10 @@
 
   vars:
         oracle_home: /u01/app/oracle/product/12.2.0/dbhome_1
-        hostname: localhost
+        hostname: ctsusaoradb01
         service_name: DBTEST
-        set_init_mode: sysdba
-        set_init_user: sys
-        user: sys
+        user: system
         password: ctsusa
-        mode: sysdba
         oracle_env:
                ORACLE_HOME: "{{ oracle_home }}"
                LD_LIBRARY_PATH: "{{ oracle_home }}/lib"
