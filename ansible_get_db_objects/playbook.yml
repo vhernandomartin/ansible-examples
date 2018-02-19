@@ -1,19 +1,19 @@
 ---
-- hosts: dbtest
-  user: victor
+- hosts: ctsmpredb1
+  user: admin
   become: yes
   become_user: oracle
   roles:
-  - dbtest
+  - ctsmpredb1
 
   vars:
-        oracle_home: /u01/app/oracle/product/12.2.0/dbhome_1
-        hostname: localhost
-        service_name: DBTEST
+        oracle_home: /u01/app/oracle/product/11.2.0/dbhome_1
+        hostname: ctsmpredb1
+        service_name: PCRMLBJ
         set_init_mode: sysdba
         set_init_user: sys
         user: sys
-        password: ctsusa
+        password: testpwd
         oracle_env:
                ORACLE_HOME: "{{ oracle_home }}"
                LD_LIBRARY_PATH: "{{ oracle_home }}/lib"
