@@ -3,4 +3,4 @@
     username: "{{ user }}"
     password: "{{ password }}"
     service_name: "{{ service_name }}"
-    sql: 'select instance_name from v$instance'
+    sql: 'select username from dba_users'

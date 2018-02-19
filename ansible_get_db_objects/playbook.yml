@@ -2,14 +2,14 @@
 - hosts: dbtest
   user: victor
   become: yes
-  become_user: grid
+  become_user: oracle
   roles:
   - dbtest
 
   vars:
-        oracle_home: /u01/app/12.2.0/grid
+        oracle_home: /u01/app/oracle/product/12.2.0/dbhome_1
         hostname: localhost
-        service_name: +ASM
+        service_name: DBTEST
         set_init_mode: sysdba
         set_init_user: sys
         user: sys
