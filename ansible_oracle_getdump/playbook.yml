@@ -1,0 +1,21 @@
+---
+- hosts: dbtest
+  user: oracle
+  roles:
+  - dbtest
+
+  vars:
+        oracle_home: /u01/app/oracle/product/11.2.0/dbhome_1
+        hostname: yourhostname
+        service_name: ORACLE_SID
+        user: system
+        password: your_password
+        dpump_dir: DUMPPREPRO
+        dpump_dir_path: /cluster/datapump/PREPRO/
+        dpump_dir_local_path: /var/tmp/
+        schema: LBJ
+        content: METADATA_ONLY
+        dumpfile: your_dumpfile.dmp
+        oracle_env:
+               ORACLE_HOME: "{{ oracle_home }}"
+               LD_LIBRARY_PATH: "{{ oracle_home }}/lib"

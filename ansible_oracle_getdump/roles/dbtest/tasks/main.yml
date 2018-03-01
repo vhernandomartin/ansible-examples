@@ -1,0 +1,20 @@
+- name: "Export data pump"
+  shell: expdp "{{ user }}"/"{{ password }}"@"{{ service_name }}" directory="{{ dpump_dir }}" dumpfile="{{ dumpfile }}" content="{{ content }}" schemas="{{ schema }}"
+  environment: "{{ oracle_env }}"
+
+- fetch:
+    src: "{{ dpump_dir_path }}{{ dumpfile }}"
+    dest: "{{ dpump_dir_local_path }}"
+
+- name: "Delete data pump"
+  file:
+    path: "{{ dpump_dir_path }}{{ dumpfile }}"
+    state: absent
+
+- name: "Copy dump to remote node"
+  copy:
+    src: "{{ dpump_dir_local_path }}{{ inventory_hostname }}{{ dpump_dir_path }}{{ dumpfile }}"
+    dest: "{{ dpump_dir_path }}{{ dumpfile }}"
+    owner: oracle
+    group: oinstall
+    mode: 0640
