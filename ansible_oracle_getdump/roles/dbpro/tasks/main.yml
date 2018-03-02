@@ -1,0 +1,13 @@
+- name: "Export data pump"
+  shell: expdp "{{ user }}"/"{{ PRO_password }}"@"{{ PRO_service_name }}" directory="{{ PRO_dpump_dir }}" dumpfile="{{ schema }}_{{ PRO_dumpfile }}" content="{{ content }}" schemas="{{ schema }}"
+  environment: "{{ oracle_env }}"
+
+- name: "Fetching file"
+  fetch:
+    src: "{{ PRO_dpump_dir_path }}{{ schema }}_{{ PRO_dumpfile }}"
+    dest: "{{ dpump_dir_local_path }}"
+
+- name: "Delete data pump"
+  file:
+    path: "{{ PRO_dpump_dir_path }}{{ schema }}_{{ PRO_dumpfile }}"
+    state: absent

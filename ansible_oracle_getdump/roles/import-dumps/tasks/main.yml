@@ -1,0 +1,5 @@
+- name: "Execute load script"
+  shell: OracleDB-load-schemas.py -u YOUR_SCHEMA -s SOURCE_ORACLE_SID -d DEST_ORACLE_SID
+  environment: "{{ oracle_env }}"
+  args:
+    chdir: "{{ PRE_dpump_dir_path }}"

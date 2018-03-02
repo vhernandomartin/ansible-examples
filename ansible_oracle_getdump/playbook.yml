@@ -1,21 +1,53 @@
 ---
-- hosts: dbtest
+- hosts: dbpro
+  user: oracle
+  roles:
+    - dbpro
+
+  vars:
+        oracle_home: /u01/app/oracle/product/11.2.0.4/dbhome_1
+        hostname: YOUR_HOSTNAME
+        PRO_service_name: YOUR_ORACLE_SID
+        user: system
+        PRO_password: YOUR_PASSWORD
+        PRO_dpump_dir: DATAPUMP
+        PRO_dpump_dir_path: YOUR_DPUMP_PATH
+        PRE_dpump_dir_path: YOUR_DPUMP_PATH
+        dpump_dir_local_path: /var/tmp/
+        schema: YOUR_SCHEMA
+        content: METADATA_ONLY
+        PRO_dumpfile: PRO_METADATA.dmp
+        oracle_env:
+               ORACLE_HOME: "{{ oracle_home }}"
+               LD_LIBRARY_PATH: "{{ oracle_home }}/lib"
+               PATH: "/usr/bin:/bin:/usr/local/bin:{{ oracle_home }}/bin"
+
+- hosts: pre
   user: oracle
   roles:
   - dbtest
+  - copy-dumps
+  - import-dumps
+  - diff-schemas
+  - send-email
 
   vars:
         oracle_home: /u01/app/oracle/product/11.2.0/dbhome_1
-        hostname: yourhostname
-        service_name: ORACLE_SID
+        hostname: YOUR_HOSTNAME
+        PRE_service_name: YOUR_ORACLE_SID
+        PRE_imp_service_name: YOUR_ORACLE_SID
         user: system
-        password: your_password
-        dpump_dir: DUMPPREPRO
-        dpump_dir_path: /cluster/datapump/PREPRO/
+        PRE_password: YOUR_PASSWORD
+        PRE_dpump_dir: DUMPPREPRO
+        PRE_dpump_dir_path: YOUR_DPUMP_PATH
+        PRO_dpump_dir_path: YOUR_DPUMP_PATH
         dpump_dir_local_path: /var/tmp/
-        schema: LBJ
+        schema: YOUR_SCHEMA
         content: METADATA_ONLY
-        dumpfile: your_dumpfile.dmp
+        PRE_dumpfile: PRE_METADATA.dmp
+        PRO_dumpfile: PRO_METADATA.dmp
+        diff0_schema: DIFF0
+        diff1_schema: DIFF1
         oracle_env:
                ORACLE_HOME: "{{ oracle_home }}"
                LD_LIBRARY_PATH: "{{ oracle_home }}/lib"

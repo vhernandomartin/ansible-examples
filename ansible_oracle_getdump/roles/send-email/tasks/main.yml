@@ -1,0 +1,9 @@
+- mail:
+    host: smtp_relay_ip
+    port: 25
+    subject: Diff report
+    body: DIFF report attached.
+    attach: /cluster/datapump/PREPRO/report.txt
+    from: someuser@domain
+    to: someuser@domain
+    cc: someuser@domain, someuser@domain

@@ -1,0 +1,5 @@
+- name: "Execute Diff script"
+  shell: OracleDB-diff-schemas.py -s "{{ PRE_imp_service_name }}" -u "{{ user }}" -p "{{ PRE_password }}" --diff_user1 "{{ diff0_schema }}" --diff_user2 "{{ diff1_schema }}" > report.txt
+  environment: "{{ oracle_env }}"
+  args:
+    chdir: "{{ PRE_dpump_dir_path }}"

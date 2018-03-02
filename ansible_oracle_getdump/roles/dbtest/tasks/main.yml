@@ -1,20 +1,13 @@
 - name: "Export data pump"
-  shell: expdp "{{ user }}"/"{{ password }}"@"{{ service_name }}" directory="{{ dpump_dir }}" dumpfile="{{ dumpfile }}" content="{{ content }}" schemas="{{ schema }}"
+  shell: expdp "{{ user }}"/"{{ PRE_password }}"@"{{ PRE_service_name }}" directory="{{ PRE_dpump_dir }}" dumpfile="{{ schema }}_{{ PRE_dumpfile }}" content="{{ content }}" schemas="{{ schema }}"
   environment: "{{ oracle_env }}"
 
-- fetch:
-    src: "{{ dpump_dir_path }}{{ dumpfile }}"
+- name: "Fetching file"
+  fetch:
+    src: "{{ PRE_dpump_dir_path }}{{ schema }}_{{ PRE_dumpfile }}"
     dest: "{{ dpump_dir_local_path }}"
 
 - name: "Delete data pump"
   file:
-    path: "{{ dpump_dir_path }}{{ dumpfile }}"
+    path: "{{ PRE_dpump_dir_path }}{{ schema }}_{{ PRE_dumpfile }}"
     state: absent
-
-- name: "Copy dump to remote node"
-  copy:
-    src: "{{ dpump_dir_local_path }}{{ inventory_hostname }}{{ dpump_dir_path }}{{ dumpfile }}"
-    dest: "{{ dpump_dir_path }}{{ dumpfile }}"
-    owner: oracle
-    group: oinstall
-    mode: 0640

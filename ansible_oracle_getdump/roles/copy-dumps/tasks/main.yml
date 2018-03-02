@@ -1,0 +1,15 @@
+- name: "Copy PRE dump to remote node"
+  copy:
+    src: "{{ dpump_dir_local_path }}dbtest{{ PRE_dpump_dir_path }}{{ schema }}_{{ PRE_dumpfile }}"
+    dest: "{{ PRE_dpump_dir_path }}{{ schema }}_{{ PRE_dumpfile }}"
+    owner: oracle
+    group: oinstall
+    mode: 0644
+
+- name: "Copy PRO dump to remote node"
+  copy:
+    src: "{{ dpump_dir_local_path }}dbpro{{ PRO_dpump_dir_path }}{{ schema }}_{{ PRO_dumpfile }}"
+    dest: "{{ PRE_dpump_dir_path }}{{ schema }}_{{ PRO_dumpfile }}"
+    owner: oracle
+    group: oinstall
+    mode: 0644
