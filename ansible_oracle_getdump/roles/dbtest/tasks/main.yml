@@ -1,5 +1,5 @@
 - name: "Export data pump"
-  shell: expdp "{{ user }}"/"{{ PRE_password }}"@"{{ PRE_service_name }}" directory="{{ PRE_dpump_dir }}" dumpfile="{{ schema }}_{{ PRE_dumpfile }}" content="{{ content }}" schemas="{{ schema }}"
+  shell: expdp "{{ user }}"/"{{ PRE_password }}"@"{{ PRE_service_name }}" directory="{{ PRE_dpump_dir }}" dumpfile="{{ schema }}_{{ PRE_dumpfile }}" content="{{ content }}" schemas="{{ schema }}" exclude=STATISTICS,DB_LINK
   environment: "{{ oracle_env }}"
 
 - name: "Fetching file"
